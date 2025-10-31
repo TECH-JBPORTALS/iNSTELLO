@@ -57,7 +57,7 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-      <div className="bg-accent/30 pattern-polka-v2 rounded-4xl flex h-full flex-col items-center justify-center gap-6 border px-10 sm:gap-10">
+      <div className="bg-accent/30 rounded-4xl flex h-full flex-col items-center justify-center gap-6 border px-10 sm:gap-10">
         <div className="bg-accent/50 shadow-accent-foreground/50 mb-8 flex size-28 items-center justify-center rounded-3xl shadow-2xl backdrop-blur-2xl sm:size-32 dark:border">
           <Image
             src={"/instello-feather.svg"}
