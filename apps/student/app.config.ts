@@ -88,22 +88,22 @@ export function getConfig() {
   switch (process.env.APP_ENV) {
     case "development":
       return {
-        name: "instello (Dev)",
+        name: "iNSTELLO (Dev)",
         scheme: "in.instello.dev",
       };
     case "preview":
       return {
-        name: "instello (Preview)",
+        name: "iNSTELLO (Preview)",
         scheme: "in.instello.preview",
       };
     case "production":
       return {
-        name: "instello",
+        name: "iNSTELLO",
         scheme: "in.instello.app",
       };
     default:
       return {
-        name: "instello",
+        name: "iNSTELLO",
         scheme: "in.instello.app",
       };
   }
