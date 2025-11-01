@@ -59,13 +59,7 @@ export default ({ config }: ConfigContext): ExpoConfig => {
           initialOrientation: "DEFAULT",
         },
       ],
-      [
-        "expo-video",
-        {
-          supportsBackgroundPlayback: true,
-          supportsPictureInPicture: true,
-        },
-      ],
+      ["expo-video"],
       [
         "expo-splash-screen",
         {
