@@ -1,13 +1,15 @@
 import type { ConfigContext, ExpoConfig } from "expo/config";
 
+import { version } from "./package.json";
+
 export default ({ config }: ConfigContext): ExpoConfig => {
-  const { name, scheme } = getConfig();
+  const { name, scheme, slug } = getConfig();
 
   return {
     ...config,
     name,
-    slug: "instello",
-    version: "1.0.0-alpha",
+    version,
+    slug,
     owner: "tech.jbportals.team",
     orientation: "portrait",
     icon: "./assets/images/icon.png",
@@ -90,21 +92,25 @@ export function getConfig() {
       return {
         name: "iNSTELLO (Dev)",
         scheme: "in.instello.dev",
+        slug: "instello-dev",
       };
     case "preview":
       return {
         name: "iNSTELLO (Preview)",
         scheme: "in.instello.preview",
+        slug: "instello-preview",
       };
     case "production":
       return {
         name: "iNSTELLO",
         scheme: "in.instello.app",
+        slug: "instello",
       };
     default:
       return {
         name: "iNSTELLO",
         scheme: "in.instello.app",
+        slug: "instello",
       };
   }
 }
