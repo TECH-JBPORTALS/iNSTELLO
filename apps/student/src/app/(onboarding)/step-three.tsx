@@ -9,10 +9,12 @@ import {
 export default function OnboardingStepThree() {
   return (
     <View className="flex-1">
+    <View className="flex-1">
       <ScrollView
         keyboardShouldPersistTaps="handled"
         contentContainerClassName="sm:flex-1 items-center p-4"
         keyboardDismissMode="interactive"
+        showsVerticalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
       >
         <Stack.Screen
@@ -23,7 +25,7 @@ export default function OnboardingStepThree() {
         />
         <BranchSelectionForm />
       </ScrollView>
-      <View className="border-t-1 border-t-border px-4 py-8">
+      <View className="border-t-border border-t px-4 py-8">
         <BranchSelectionFormFooter />
       </View>
     </View>
