@@ -9,10 +9,12 @@ import {
 export default function OnboardingStepThree() {
   return (
     <View className="flex-1">
+    <View className="flex-1">
       <ScrollView
         keyboardShouldPersistTaps="handled"
         contentContainerClassName="sm:flex-1 items-center p-4"
         keyboardDismissMode="interactive"
+        showsVerticalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
       >
         <Stack.Screen

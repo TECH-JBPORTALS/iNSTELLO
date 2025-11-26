@@ -14,6 +14,7 @@ export default function OnboardingStepTwo() {
         contentContainerClassName="sm:flex-1 items-center p-4"
         keyboardDismissMode="interactive"
         showsVerticalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
       >
         <Stack.Screen
           options={{
