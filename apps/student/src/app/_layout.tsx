@@ -81,7 +81,12 @@ function Routes() {
   }
 
   return (
-    <Stack screenOptions={{ headerShadowVisible: false }}>
+    <Stack
+      screenOptions={{
+        headerShadowVisible: false,
+        headerTitleStyle: { fontFamily: "MontserratSemiBold" },
+      }}
+    >
       {/* Screens only shown when the user is NOT signed in */}
       <Stack.Protected guard={!isSignedIn}>
         <Stack.Screen
@@ -110,7 +115,10 @@ function Routes() {
         {/** Screens only shown when the user Is completed the onboarding process */}
         <Stack.Protected guard={!!sessionClaims?.metadata?.onBoardingCompleted}>
           <Stack.Screen name="(home)" options={{ headerShown: false }} />
-          <Stack.Screen name="profile" options={{ title: "My Profile" }} />
+          <Stack.Screen
+            name="profile"
+            options={{ title: "My Profile", headerTitleAlign: "center" }}
+          />
           <Stack.Screen name="channel" options={{ headerShown: false }} />
           <Stack.Screen
             name="(subscribe)/index"

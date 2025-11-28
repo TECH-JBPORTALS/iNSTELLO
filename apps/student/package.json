@@ -2,6 +2,7 @@
   "name": "@instello/student",
   "main": "index.ts",
   "version": "1.0.0",
+  
   "scripts": {
     "dev": "expo start -c",
     "android": "expo start -c --android",
