@@ -74,7 +74,7 @@ export function SocialConnections() {
       } catch (err) {
         // See https://go.clerk.com/mRUDrIe for more info on error handling
         console.error(JSON.stringify(err, null, 2));
-        posthog.captureException(err);
+        posthog.captureException(err, { scheme, path });
       }
       setIsLoading(false);
     };
