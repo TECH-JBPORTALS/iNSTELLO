@@ -5,7 +5,7 @@ import * as React from "react";
 import { Image, Platform, useColorScheme, View } from "react-native";
 import * as AuthSession from "expo-auth-session";
 import Constants from "expo-constants";
-import { router, usePathname } from "expo-router";
+import { usePathname } from "expo-router";
 import * as WebBrowser from "expo-web-browser";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -63,22 +63,25 @@ export function SocialConnections() {
           }),
         });
 
-        if (!createdSessionId && signUp && path == "sign-up") {
-          const r = await signUp.prepareEmailAddressVerification({
-            strategy: "email_code",
+        // If sign in was successful, set the active session
+        if (createdSessionId) {
+          await setActive?.({
+            session: createdSessionId,
           });
-
-          if (r.emailAddress)
-            router.push(`/(auth)/sign-up/verify-email?email=${r.emailAddress}`);
+        } else {
+          // If there is no `createdSessionId`,
+          // there are missing requirements, such as MFA
+          // See https://clerk.com/docs/guides/development/custom-flows/authentication/oauth-connections#handle-missing-requirements
+          posthog.capture("social_login_missing_requirements", {
+            strategy,
+            signUpMissingFields: JSON.stringify(signUp?.missingFields),
+          });
         }
-
-        if (createdSessionId) await setActive?.({ session: createdSessionId });
       } catch (err) {
         if (isClerkAPIResponseError(err)) {
           setErrors(err.errors);
         }
 
-        console.error(JSON.stringify(err, null, 2));
         posthog.captureException(err, { scheme, path });
       }
       setIsLoading(false);

@@ -15,12 +15,14 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Text } from "@/components/ui/text";
 import { isClerkAPIResponseError, useSignUp } from "@clerk/clerk-expo";
+import { usePostHog } from "posthog-react-native";
 
 const RESEND_CODE_INTERVAL_SECONDS = 30;
 
 const TABULAR_NUMBERS_STYLE: TextStyle = { fontVariant: ["tabular-nums"] };
 
 export function VerifyEmailForm() {
+  const posthog = usePostHog();
   const { signUp, setActive, isLoaded } = useSignUp();
   const { email = "" } = useLocalSearchParams<{ email?: string }>();
   const [code, setCode] = React.useState("");
@@ -50,7 +52,7 @@ export function VerifyEmailForm() {
       if (isClerkAPIResponseError(err)) {
         setErrors(err.errors);
       }
-      console.error(JSON.stringify(err, null, 2));
+      posthog.captureException(err, { email, type: "verify_email_form" });
     }
 
     setIsLoading(false);
@@ -67,7 +69,7 @@ export function VerifyEmailForm() {
       if (isClerkAPIResponseError(err)) {
         setErrors(err.errors);
       }
-      console.error(JSON.stringify(err, null, 2));
+      posthog.captureException(err, { email, type: "resend_code" });
     }
   }
 
